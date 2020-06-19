@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+
+  {% include head2.html %}
+  {% include header2.html %}
+  {% include script2.html %}
+  <body>
+    <!-- Main Container -->
+    <div id="banners"></div>
+    <div class="container">
+      {{ links }}
+      {% for video in site.posts %}
+      {% if page.vdo_id == video.vdo_id %}
+      <div class="side-left col-sm-4 col-md-8" style="background: white;height: 530px;">
+        {{ video.html }}
+      </div>
+      <div class="col-sm-8 col-md-4">
+        <h4>{{video.title}}</h4>
+        <p>{{ video.description }}</p>
+      </div>
+      {% break %}
+      {% endif %}
+      {% endfor %}
+
+      {% assign title_arr = page.links_title | split: "|" %}
+      {% assign links_arr = page.links | split: "|" %}
+      {% assign links_img = page.links_img | split: "|" %}
+    </div>
+    <!--End Main Container -->
+    <div class="container">
+      {% for title1 in title_arr %}
+        <div class="col-md-3" style="text-align: center;">
+          <a href="{{links_arr[forloop.index0]}}" style="color:black;">
+            <img src="{{links_img[forloop.index0]}}" style="width: 80%;margin: auto;"><br>
+          {{ title1 }}</a>
+        </div>
+      {% endfor %}
+      </div>
+  </body>
+
+  {% include footer.html %}
+</html>

@@ -24,11 +24,12 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 
 # Company Information
 company_name: 넥스트도어
-address_line: 서울특별시 마포구 새창로 11, 공덕빌딩 9층
+address_line: 서울 마포구 백범로31길 21, 서울창업허브 본관 411호
 telephone_number: 02-000-1111
 # fax_number: 1.800.245.357
 company_email: contact@thenextdoor.co.kr
 google_map: https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d3618.727010735933!2d91.837871!3d24.907291700000002!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2s!4v1404919738144
+naver_map: https://map.naver.com/v5/search/%EC%B0%BD%EC%97%85%ED%97%88%EB%B8%8C%20%EC%A3%BC%EC%B0%A8%EC%9E%A5/place/1588468662?c=14131885.6025340,4515202.1432051,16,0,0,0,dh
 
 # Social Link
 # facebook_link: http://www.facebook.com

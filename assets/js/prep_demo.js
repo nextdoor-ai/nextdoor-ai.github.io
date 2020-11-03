@@ -366,18 +366,15 @@ function setChecked(img_id){
 }
 
 var in_text_area = false;
-var img_class_input_type = {};
-var img_class_input_char = {};
+const img_class_input_type = {"img_obj1":"dropdown"};
+const img_class_input_char = {"img_obj1":["개", "사람", "고양이"]};
 var i_max_len = 0;
 var i_min_len = 0;
 var _is_processing = false;
-var input_cnt = {};
-var input_label_type = {}
-var img_class_input_type_tmp = {};
 var img_class_input_char_tmp = {};
 var img_class_input_char_tmp_txt = {};
-var img_class_input_char_txt = {};
-var lbl_txt_map = {}
+var img_class_input_char_txt = img_class_input_char;
+const lbl_txt_map = {"개":"개", "사람":"사람", "고양이":"고양이"}
 
 $(document).ready(function(){
     _via_init()
@@ -422,16 +419,8 @@ $(document).ready(function(){
         $("#exampleModal").toggle()
     })
 
-//    if($("#guide_img").attr("src") != ""){
-//        $("#info_btn").show()
-//    }
-
     // thumbnail images
     $("body").on("click", ".container_i", function(){
-//        $(".container_i").removeClass('active')
-//        $(this).addClass('active')
-//
-//        jump_to_image($(this).attr('attr-idx'))
         if(_is_drawing){
             return false
         }
@@ -458,78 +447,55 @@ $(document).ready(function(){
         } else {
             formdata.append("cctv_inc", "");
         }
-        $.ajax({
-            url: window.location.origin + '/read_images_v2',
-            processData: false,
-            contentType: false,
-            data: formdata,
-            type: 'POST',
-            success: function(result){
-                del_dtt_id = []
+        del_dtt_id = []
 
-                result = JSON.parse(result);
-                console.log(result)
-                curr_image_no = 0;
-                last_image_no = 0;
+        let file_url_arr = ["https://github.com/nextdoor-ai/nextdoor-ai.github.io/blob/master/assets/img/cat.jpg?raw=true",
+                            "https://github.com/nextdoor-ai/nextdoor-ai.github.io/blob/master/assets/img/children.jpg?raw=true",
+                            "https://github.com/nextdoor-ai/nextdoor-ai.github.io/blob/master/assets/img/dog.JPG?raw=true",
+                            "https://github.com/nextdoor-ai/nextdoor-ai.github.io/blob/master/assets/img/dog2.JPG?raw=true"]
 
-                if (result.status == 'OK') {
-                    last_image_no = Object.keys(result.data._via_img_metadata).length;
-                    project_open_parse_json_file(result.data);
-                    if(result.cnt != undefined){
-                        $("#left_cnt").text(result.cnt)
-                    }
+        let img1_meta = {"filename":file_url_arr[0], "size":54962, "file_attributes":{}, "img_class":"img_obj", "regions":[{"region_attributes":{"label":"고양이"}, "shape_attributes":{"dtt_id":"1", "height":400, "img_class":"img_obj", "name":"rect", "width":500, "x":380, "y":245}}]}
+        let img2_meta = {"filename":file_url_arr[1], "size":98814, "file_attributes":{}, "img_class":"img_obj", "regions":[{"region_attributes":{"label":"사람"}, "shape_attributes":{"dtt_id":"2", "height":710, "img_class":"img_obj", "name":"rect", "width":220, "x":400, "y":80}}]}
+        let img3_meta = {"filename":file_url_arr[2], "size":52154, "file_attributes":{}, "img_class":"img_obj", "regions":[{"region_attributes":{"label":"개"}, "shape_attributes":{"dtt_id":"3", "height":450, "img_class":"img_obj", "name":"rect", "width":450, "x":0, "y":50}}]}
+        let img4_meta = {"filename":file_url_arr[3], "size":99228, "file_attributes":{}, "img_class":"img_obj", "regions":[{"region_attributes":{"label":"개"}, "shape_attributes":{"dtt_id":"4", "height":300, "img_class":"img_obj", "name":"rect", "width":450, "x":350, "y":260}}]}
 
-                    _img_class = result.img_class_arr
+        let _via_attributes_1 = {"file":{}, "region":{"label":{"default_value": "", "description": "", "options":["사람", "개", "고양이", "차"], "type":"dropdown"}}}
+        let _via_img_metadata_1 = {"img_1":img1_meta, "img_2":img2_meta, "img_3":img3_meta, "img_4":img4_meta}
+        let _via_settings_1 = {"core":{"buffer_size":18, "filepath":{}, "default_filepath":""}, "project":"MindTrip",
+                                "ui":{"annotation_editor_fontsize":0.8, "annotation_editor_height":35, "leftsidebar_width":18,
+                                    "image":{"region_label":"region_id", "region_label_font":"10px Sans"},
+                                    "image_grid":{
+                                        "img_height": 80,
+                                        "rshape_fill": "none",
+                                        "rshape_fill_opacity": 0.3,
+                                        "rshape_stroke": "yellow",
+                                        "rshape_stroke_width": 2,
+                                        "show_image_policy": "all",
+                                        "show_region_shape": true
+                                    }
+                                }}
+        let rslt_data = {"_via_attributes":_via_attributes_1, "_via_img_metadata":_via_img_metadata_1, "_via_settings":_via_settings_1}
+        result = {"data":rslt_data}
+        curr_image_no = 0;
+        last_image_no = 0;
 
-                    $("#sav_btn").show();
-                    $("#chk_sav_btn").hide();
+        last_image_no = Object.keys(result.data._via_img_metadata).length;
+        project_open_parse_json_file(result.data);
 
-                    if(TASK_STATUS == "COMPLETE_A"){
-                        $("#mng_div").show();
-                    } else if(TASK_STATUS == "CHECKED"){
-                        $("#sav_btn").hide();
-                        $("#chk_sav_btn").show();
-                    }
-                    $(".dragscroll").show()
-                    $("#del_all").show();
-                    $("#del_btn").show();
-                    $("#stats_btn").show()
-                    $("#stats_btn_no").show()
-                } else {
-                    alert(result.message)
-                }
-                $("#load_btn").removeAttr("disabled")
-                $("#loading_btn").hide()
+        _img_class = "img_obj"
 
-                drawImageHTML()
-            },
-            error: function (e) {
-                $("#load_btn").removeAttr("disabled")
-                $("#loading_btn").hide()
-                $("#del_all").hide();
-                $("#del_btn").hide();
-                $("#stats_btn").hide()
-            }
-        });
-    })
+        $("#sav_btn").show();
+        $("#chk_sav_btn").hide();
 
-    $("#stats_btn").on("click", function(){
-        if(_via_img_count < 1){
-            alert("저장할 이미지가 없습니다.")
-            return;
-        }
-        if($("#comp_chk").val() == "Y"){
-            if(confirm("처리한 모든 작업을 저장하시겠습니까?")){
-                _showLoading()
-                TASK_STATUS = 'CHECKED'
-                pack_via_metadata('db_u_adm')
-            }
-        } else {
-            if(confirm("처리한 모든 작업을 저장하시겠습니까?")){
-                _showLoading()
-                pack_via_metadata('db_i')
-            }
-        }
+        $(".dragscroll").show()
+        $("#del_all").show();
+        $("#del_btn").show();
+        $("#stats_btn").show()
+        $("#stats_btn_no").show()
+        $("#load_btn").removeAttr("disabled")
+        $("#loading_btn").hide()
+
+        drawImageHTML()
     })
 
     $("#stats_btn_no").on("click", function(){
@@ -556,134 +522,34 @@ $(document).ready(function(){
         }
     });
 
-    //delete one
-    $("#del_btn").on("click", function(){
-        if(_is_processing == true){
-            return
-        }
-        if(_via_img_count < 1){
-            alert("삭제할 이미지가 없습니다.")
-            return;
-        }
-        if(confirm("현재 선택된 이미지를 삭제하겠습니까?")){
-            $("#del_all").prop("disabled", "disabled")
-            _is_processing = true
-            $("#loading_btn2").show()
-            $("#del_btn").prop("disabled", "disabled")
-            delImage()
-        }
-    })
-
-    //delete all
-    $("#del_all").on("click", function(){
-        if(_is_processing == true){
-            return
-        }
-        if(_via_img_count < 1){
-            alert("삭제할 이미지가 없습니다.")
-            return;
-        }
-        if(confirm("전체 이미지를 삭제하겠습니까?")){
-            $("#del_btn").prop("disabled", "disabled")
-            _is_processing = true
-            $("#loading_btn3").show()
-            $("#del_all").prop("disabled", "disabled")
-            delAllImage()
-        }
-    })
-
     $("#toggle_left").on("click", function(){
         $("#leftsidebar").toggle()
     })
 
-    var inputs = parseWebData($("#menuInput").val().replace(/u\'/gi, "\"").replace(/\'/gi, '"'))
-    _input_type = inputs[0].im_label_type
-    if(inputs[0].im_label_type == '1'){ // TEXT
-        _labels = inputs[0].mdl_lbl.split(',')
-        $("#label_list").html('<a href="#" class="list-group-item list-group-item-action active">TEXT</a> ')
-    } else if(inputs[0].im_label_type == '2'){ // SELECT BOX
-        _labels = inputs[0].mdl_lbl.split(',')
-        let _labels_txt = inputs[0].mdl_lbl_txt.split(',')
-        var lbl_html = ""
+    _input_type = "2"
+    _labels = ["사람", "고양이", "개"]
+    let _labels_txt = _labels
+    var lbl_html = ""
 
-        for(var i=0; i<_labels.length; i++){
-            if (i == 0){
-                lbl_html += '<a href="#" class="list-group-item list-group-item-action active" attr-value="'+_labels[i]+'">'+_labels_txt[i]+'</a> '
-                _default_val = _labels[i]
-                _default_txt = _labels_txt[i]
-            } else {
-                lbl_html += '<a href="#" class="list-group-item list-group-item-action" attr-value="'+_labels[i]+'">'+_labels_txt[i]+'</a> '
-            }
-        }
-        $("#label_list").html(lbl_html)
-
-        $("#label_list").on("click", "a", function(){
-            $("#label_list a.active").removeClass('active')
-            $(this).addClass('active')
-            _default_val = $(this).attr("attr-value")
-            _default_txt = $(this).html()
-        })
-    }
-
-    //입력값 제한정보 세팅
-    var inputs = JSON.parse($("#menuInput").val().replace(/u\'/gi, "\"").replace(/\'/gi, "\""))
-
-    for(var i = 0; i < inputs.length; i++){
-        var tmpInput = inputs[i];
-        console.log('tmpInput')
-        console.log(tmpInput)
-
-        if(tmpInput.im_label_type == '1'){
-            i_max_len = tmpInput.im_max_len;
-            i_min_len = tmpInput.im_min_len;
-        }
-
-//        console.log(input_cnt)
-        img_class_input_type_tmp[tmpInput.img_class+tmpInput.im_label_type] = tmpInput.im_label_type.replace('2', 'dropdown').replace('1', 'text');
-        if(tmpInput.img_class in input_cnt){
-            input_cnt[tmpInput.img_class] += 1;
-            input_label_type[tmpInput.img_class].push(tmpInput.im_label_type);
+    for(var i=0; i<_labels.length; i++){
+        if (i == 0){
+            lbl_html += '<a href="#" class="list-group-item list-group-item-action active" attr-value="'+_labels[i]+'">'+_labels_txt[i]+'</a> '
+            _default_val = _labels[i]
+            _default_txt = _labels_txt[i]
         } else {
-            input_cnt[tmpInput.img_class] = 1;
-            input_label_type[tmpInput.img_class] = [tmpInput.im_label_type];
-        }
-
-        if(tmpInput.mdl_lbl != null && tmpInput.mdl_lbl != undefined && tmpInput.mdl_lbl != ""){
-            img_class_input_char_tmp[tmpInput.img_class+tmpInput.im_label_type] = tmpInput.mdl_lbl.split(',');
-            img_class_input_char_tmp_txt[tmpInput.img_class+tmpInput.im_label_type] = tmpInput.mdl_lbl_txt.split(',');
-
-            let val_arr = tmpInput.mdl_lbl.split(',');
-            let txt_arr = tmpInput.mdl_lbl_txt.split(',');
-
-            for(let i=0; i<val_arr.length; i++){
-                lbl_txt_map[val_arr[i]] = txt_arr[i]
-            }
+            lbl_html += '<a href="#" class="list-group-item list-group-item-action" attr-value="'+_labels[i]+'">'+_labels_txt[i]+'</a> '
         }
     }
-    console.log('input_cnt');
-    console.log(input_cnt);
+    $("#label_list").html(lbl_html)
+
+    $("#label_list").on("click", "a", function(){
+        $("#label_list a.active").removeClass('active')
+        $(this).addClass('active')
+        _default_val = $(this).attr("attr-value")
+        _default_txt = $(this).html()
+    })
 
     let multi_input = false;
-    //갯수가 2개 이상인 경우 체크
-    for(var prop in input_cnt){
-         if(input_cnt[prop] > 1){
-             //Selectbox를 1번(기본), Text를 2번으로 한다.
-             img_class_input_type[prop+"1"] = img_class_input_type_tmp[prop+"2"]
-             img_class_input_type[prop+"2"] = img_class_input_type_tmp[prop+"1"]
-             img_class_input_char[prop+"1"] = img_class_input_char_tmp[prop+"2"]
-             img_class_input_char[prop+"2"] = img_class_input_char_tmp[prop+"1"]
-
-             img_class_input_char_txt[prop+"1"] = img_class_input_char_tmp_txt[prop+"2"]
-             img_class_input_char_txt[prop+"2"] = img_class_input_char_tmp_txt[prop+"1"]
-             multi_input = true;
-         } else {
-             img_class_input_type[prop+"1"] = img_class_input_type_tmp[prop+input_label_type[prop][0]]
-             img_class_input_char[prop+"1"] = img_class_input_char_tmp[prop+input_label_type[prop][0]]
-
-             img_class_input_char_txt[prop+"1"] = img_class_input_char_tmp_txt[prop+input_label_type[prop][0]]
-         }
-    }
-
     if(multi_input == false){
         $("#canvas_div").css("width", "80%")
         $("#right_area").css("width", "20%")
@@ -693,14 +559,13 @@ $(document).ready(function(){
         var key1 = Object.keys(img_class_input_type)[0]
         if(img_class_input_type[key1] == "dropdown"){
             var labels1 = img_class_input_char[key1]
-            var label_txt = img_class_input_char_txt[key1]
 
             var options = "<option value=''>default value</option>"
             for(var i = 0; i<labels1.length; i++){
                 if (i == 0){
-                    options += "<option value='"+labels1[i]+"' selected>"+label_txt[i]+"</option>"
+                    options += "<option value='"+labels1[i]+"' selected>"+labels1[i]+"</option>"
                 } else {
-                    options += "<option value='"+labels1[i]+"'>"+label_txt[i]+"</option>"
+                    options += "<option value='"+labels1[i]+"'>"+labels1[i]+"</option>"
                 }
             }
 
@@ -708,46 +573,9 @@ $(document).ready(function(){
             if(labels1.length == 1){
                 $("#default_val option:eq(1)").attr('selected', 'selected')
             }
-//            $("#default_val").show()
         }
     }
 });
-
-function delAllImage(){
-    var formdata = new FormData();
-    formdata.append("img_id", _via_image_id_list);
-    formdata.append("menu_id", $("#menuId").val())
-    $.ajax({
-        url: window.location.origin + '/del_image_arr',
-        processData: false,
-        contentType: false,
-        data: formdata,
-        type: 'POST',
-        success: function(result){
-            console.log(result)
-            result = JSON.parse(result);
-            console.log(result)
-
-            if (result.status == 'OK') {
-                alert("삭제 완료되었습니다.")
-                reloadPage()
-            } else {
-                alert(result.message)
-            }
-            $("#del_btn").removeAttr("disabled")
-            $("#del_all").removeAttr("disabled")
-            $("#loading_btn3").hide()
-            _is_processing = false
-        },
-        error: function (e) {
-            alert(e)
-            $("#del_btn").removeAttr("disabled")
-            $("#del_all").removeAttr("disabled")
-            $("#loading_btn3").hide()
-            _is_processing = false
-        }
-    });
-}
 
 function activeTb(idx){
     if(idx < 0 || _via_img_count == 0){
@@ -799,60 +627,6 @@ function removeImage(img_id, idx_1){
         jump_to_image(idx_1)
     }, 500)
 
-}
-
-function delImage(){
-    var img_id = curr_img_id;
-    var bf_idx = _via_image_id_list.indexOf(img_id) - 1
-    var formdata = new FormData();
-    formdata.append("img_id", img_id);
-    formdata.append("menu_id", $("#menuId").val())
-    $.ajax({
-        url: window.location.origin + '/del_image',
-        processData: false,
-        contentType: false,
-        data: formdata,
-        type: 'POST',
-        success: function(result){
-            result = JSON.parse(result);
-            console.log(result)
-
-            if (result.status == 'OK') {
-                var idx_1 = 0
-                if(bf_idx > -1){
-                    idx_1 = bf_idx
-                }
-                removeImage(img_id, idx_1)
-
-                drawImageHTML(idx_1)
-
-//                selectRow(idx_1)
-
-//                if(_via_img_count > 0){
-//                    setTimeout(function(){
-//                        if(bf_idx > -1){
-//                            selectRow(bf_idx)
-//                        } else {
-//                            selectRow(0)
-//                        }
-//                    }, 500)
-//                }
-                alert("삭제 완료되었습니다.")
-            } else {
-                alert(result.message)
-            }
-            $("#del_all").removeAttr("disabled")
-            $("#del_btn").removeAttr("disabled")
-            $("#loading_btn2").hide()
-            _is_processing = false
-        },
-        error: function (e) {
-            $("#del_all").removeAttr("disabled")
-            $("#del_btn").removeAttr("disabled")
-            $("#loading_btn2").hide()
-            _is_processing = false
-        }
-    });
 }
 
 // 메뉴이동
@@ -1650,7 +1424,6 @@ function pack_via_metadata(return_type) {
           return;
       }
 
-      var service_id = 'add_detect_v2';
       //alert('TASK_STATUS:', TASK_STATUS);
       var detect_list  = [];
       console.log('_via_img_metadata', isEmpty(_via_img_metadata) )
@@ -1687,88 +1460,7 @@ function pack_via_metadata(return_type) {
           console.log(detect_list);
 
           updating = true;
-          $.ajax({
-              url: window.location.origin + '/'+service_id,
-              processData: false,
-              dataType: 'json',
-              contentType: 'application/json; charset=utf-8',
-              data: JSON.stringify([TASK_STATUS, detect_list, del_dtt_id, $("#menuId").val(), _img_class]),
-              type: 'POST',
-              success: function(result){
-                  result = JSON.parse(JSON.stringify(result));
-                  alert(result.message);
-                  if (result.status == 'OK') {
-                      location.reload();
-                  }
-                  updating = false;
-                  closeLoading()
-              },
-              error : function(request, status, error ) {   // 오류가 발생했을 때 호출된다.
-                console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                updating = false;
-                closeLoading()
-              }
-          });// end $.ajax({
       }// end if (isEmpty(_via_img_metadata)) {
-  } else if(return_type === 'db_u_adm'){
-      if (TASK_STATUS == 'CHECKED'){
-          var detect_list = [];
-          var sts = 'N';
-          for ( var image_id in _via_img_metadata ) {
-              var fattr = _via_img_metadata[image_id].file_attributes;
-              var filename = _via_img_metadata[image_id].filename ;
-              var filesize = _via_img_metadata[image_id].size;
-              var r = _via_img_metadata[image_id].regions;
-
-              if (r.length == 0) {
-                  var cf_result = confirm('입력 안된 Annotation 있습니다.\nimage_id:['+image_id+']\nAnnotation하시겠습니까?')
-                  if (cf_result == true) {
-                      var index = _via_image_filename_list.findIndex(function(element){
-                          //console.log('pack_via_metadata(db_i) element:',element)
-                          closeLoading()
-                          return element == filename
-                      });
-                      //console.log('pack_via_metadata(db_i) jump_to_image(index):', index)
-//                      jump_to_image(index)
-                      selectRow(index)
-                      closeLoading()
-                      return;
-                  } else {
-                      continue;
-                  }
-              }
-              //
-              sts = 'Y';
-              var dt_list = data2input(r, filename, filesize, image_id)
-              detect_list = detect_list.concat(dt_list);
-          }
-
-          if (sts == 'Y'){
-              $.ajax({
-                  url: window.location.origin + '/upd_detect',
-                  processData: false,
-                  dataType: 'json',
-                  contentType: 'application/json; charset=utf-8',
-                  data: JSON.stringify([TASK_STATUS, detect_list, $("#menuId").val()]),
-                  type: 'POST',
-                  success: function(result){
-                      result = JSON.parse(JSON.stringify(result));
-                      alert("정상 처리되었습니다.");
-                      if (result.status == 'OK') {
-                          location.reload();
-                      }
-                      closeLoading()
-                  },
-                  error : function(request, status, error ) {   // 오류가 발생했을 때 호출된다.
-                    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-                    updating = false;
-                    closeLoading()
-                  }
-              });// end $.ajax({
-          }
-      }
-
-
   } else {
       closeLoading()
       return [ JSON.stringify(_via_img_metadata) ];
@@ -3140,74 +2832,6 @@ function isEmpty(obj) {
             return false;
     }
     return true;
-}
-
-function image_info_upload() {
-    var files = document.getElementById("invisible_file_input").files;
-    var formdata = new FormData();
-    //var files = document.querySelector('input[type=file]').files;
-    if (files.length == 0) {
-        alert('업로드 할 파일이 없습니다.')
-    } else {
-        for (var i=0, ii=files.length; i<ii; i++) {
-            var file = files[i];
-            var reader  = new FileReader();
-            reader.onload = function (e) {
-                var image = new Image;
-                $(image).load
-                image.onload = function() {}
-                image.src = e.target.result;
-                if (image.width == 0) {
-                    setTimeout(function() {
-                        console.log('setTimeout 100ms')
-                        formdata.append("image_width[]", image.width);
-                        formdata.append("image_height[]", image.height);
-                        console.log(formdata.getAll('image_file[]'), formdata.getAll('image_width[]'), formdata.getAll('image_height[]'))
-                        if (formdata.getAll('image_width[]').length == files.length) {
-                            $.ajax({
-                                url: window.location.origin + '/image_info_upload',
-                                processData: false,
-                                contentType: false,
-                                data: formdata,
-                                type: 'POST',
-                                success: function(result){
-                                    result = JSON.parse(result);
-                                    alert(result.message);
-                                    if (result.status == 'OK') {
-                                        location.reload();
-                                    }
-                                }
-                            });
-                        }
-                    }, 100);
-                } else {
-                    formdata.append("image_width[]", image.width);
-                    formdata.append("image_height[]", image.height);
-                    console.log(formdata.getAll('image_file[]'), formdata.getAll('image_width[]'), formdata.getAll('image_height[]'))
-                    if (formdata.getAll('image_width[]').length == files.length) {
-                            $.ajax({
-                                url: window.location.origin + '/image_info_upload',
-                                processData: false,
-                                contentType: false,
-                                data: formdata,
-                                type: 'POST',
-                                success: function(result){
-                                    result = JSON.parse(result);
-                                    alert(result.message);
-                                    if (result.status == 'OK') {
-                                        location.reload();
-                                    }
-                                }
-                            });
-                    }
-                }
-
-            }
-            if (file) reader.readAsDataURL(file);
-            formdata.append("image_file[]", file);
-            formdata.append("image_size[]", file.size);
-        }
-    } // end if
 }
 
 function _via_draw_point_region(cx, cy, is_selected) {
@@ -5949,22 +5573,6 @@ function annotation_editor_get_metadata_row_html_mindtrip(row_id) {
     row.appendChild(rid);
   }
 
-//  if ( _via_metadata_being_updated === 'file' ) {
-//    var rid = document.createElement('span');
-//    rid.setAttribute('class', 'col');
-//    switch(_via_display_area_content_name) {
-//    case VIA_DISPLAY_AREA_CONTENT_NAME.IMAGE_GRID:
-//      rid.innerHTML = 'Group of ' + _via_image_grid_img_index_list.length + ' files';
-//      break;
-//    case VIA_DISPLAY_AREA_CONTENT_NAME.IMAGE:
-//      rid.innerHTML = _via_image_filename_list[_via_image_index];
-//      break;
-//    }
-//
-//    _via_image_grid_img_index_list
-//    row.appendChild(rid);
-//  }
-
   var attr_id;
   var input_type_local;
   var input_option_local;
@@ -6045,10 +5653,6 @@ function annotation_editor_get_metadata_row_html_mindtrip(row_id) {
     }
 
     // selectbox 기본값
-//    if(input_type_local == 'dropdown' && attr_value == '' && $("#default_val").val() != ""){
-//        attr_value = $("#default_val").val()
-//        _via_img_metadata[_via_image_id].regions[row_id].region_attributes[attr_id] = attr_value;
-//    }
     if(input_type_local == 'dropdown' && attr_value == ''){
         attr_value = _default_val
         _via_img_metadata[_via_image_id].regions[row_id].region_attributes[attr_id] = attr_value;
@@ -6059,12 +5663,6 @@ function annotation_editor_get_metadata_row_html_mindtrip(row_id) {
     //switch(attr_type) {
     switch(input_type_local){
     case 'text':
-//      col.innerHTML = '<textarea ' +
-//        'onchange="annotation_editor_on_metadata_update(this)" ' +
-//        'title="' + attr_desc + '" ' +
-//        'placeholder="' + attr_placeholder + '" ' +
-//        'id="' + attr_html_id + '">' + attr_value + '</textarea>';
-
       col.innerHTML = '<input type="text" onchange="annotation_editor_on_metadata_update(this)" id="'+attr_html_id+'" value="'+attr_value+'" maxlength="'+i_max_len+'" style="width: 140px;">'
       break;
     case 'dropdown':
@@ -8424,9 +8022,6 @@ function _via_show_img(img_index) {
 
   var regions = _via_img_metadata[img_id].regions;
   var txt = "";
-//  if($("#is_adm").val() == "Y"){
-//    txt = "정상여부 ";
-//  }
 
 
   var rgtxt = "";
@@ -8435,7 +8030,6 @@ function _via_show_img(img_index) {
       if(i == regions.length -1){
           rgtxt += lbl_txt_map[reg.region_attributes.label];
       } else {
-//          rgtxt += reg.region_attributes.label + "/";
           rgtxt += lbl_txt_map[reg.region_attributes.label] + "/";
       }
   }
@@ -8462,6 +8056,7 @@ function _via_show_img(img_index) {
     }
   }
 
+  console.log(img_index)
   if ( _via_buffer_img_index_list.includes(img_index) ) {
     _via_current_image_loaded = false;
     _via_show_img_from_buffer(img_index).then( function(ok_img_index) {
@@ -9272,110 +8867,6 @@ function generate_img_index_list(input) {
   var intersect = array_intersect(all_img_index_list);
   return intersect;
 }
-
-function get_video_list() {
-    $.ajax({
-        url: window.location.origin + '/get_video_list',
-        processData: false,
-        contentType: false,
-        type: 'POST',
-        success: function(result){
-            result = JSON.parse(result);
-            if (result.status == 'OK') {
-                var rows = result.data;
-                var t = '<style>';
-                t +='table.type11 {';
-                t +='    border-collapse: separate;';
-                t +='    border-spacing: 1px;';
-                t +='    text-align: center;';
-                t +='    line-height: 1.5;';
-                t +='    margin: 20px 10px;';
-                t +='}';
-                t +='table.type11 th {';
-                t +='    width: 155px;';
-                t +='    border-collapse:collapse;';
-                t +='    padding: 10px;';
-                t +='    font-weight: bold;';
-                t +='    vertical-align: top;';
-                t +='    color: #fff;';
-                t +='    background: #ce4869 ;';
-                t +='}';
-                t +='table.type11 td {';
-                t +='    width: 155px;';
-                t +='    border-collapse:collapse;';
-                t +='    padding: 10px;';
-                t +='    vertical-align: top;';
-                t +='    border-bottom: 1px solid #ccc;';
-                t +='    background: #eee;';
-                t +='}';
-				t +='</style>';
-                t +='<table class="type11"><caption><h3>Video List</h3></caption>';
-                t +='<thead><tr>';
-                t +='<th scope="cols">vdo_seq</th>';
-                t +='<th scope="cols">vdo_id</th>';
-                t +='<th scope="cols">vdo_url</th>';
-                t +='<th scope="cols">vdo_name</th>';
-                t +='<th scope="cols">vdo_fps</th>';
-                t +='<th scope="cols">vdo_width</th>';
-                t +='<th scope="cols">vdo_height</th>';
-                t +='<th scope="cols">vdo_desc</th>';
-                t +='<th scope="cols">vdo_reg</th>';
-                t +='</tr></thead>';
-                t +='<tbody>';
-                for (var i in rows){
-                    var row = rows[i]
-                    t+='<tr>';
-                    for (var j in row) {
-                        if (j ==1) {
-                            var vdoId = row[j].trim();
-                            t+='<td>';
-                            t+='<span>'+vdoId+'</span><br/>';
-                            t+='<button onclick="get_video_info(\''+vdoId+'\');">Show</button>';
-                            t+='</td>';
-                        } else if (j == 2) {
-                            t+='<td>';
-                            t+='<video width="200" controls>';
-                            t+='<source src="'+row[j]+'" type="video/mp4">';
-                            t+='</video>';
-                            t+='</td>';
-                        } else {
-                            t+='<td>'+row[j]+'</td>'
-                        }
-                    }
-                    t+='</tr>';
-                }
-                t +='</tbody></table>';
-                set_display_area_content(VIA_DISPLAY_AREA_CONTENT_NAME.VIDEO);
-                $('#video_list_panel').html(t)
-            } else if (result.status == 'ZERO_RESULTS') {
-                alert(result.message)
-            }
-        }
-    });
-}
-
-function get_video_info(vdo_id) {
-    //alert(vdo_id);
-    var formdata = new FormData();
-    formdata.append("vdo_id", vdo_id);
-    $.ajax({
-        url: window.location.origin + '/get_video_info',
-        processData: false,
-        contentType: false,
-        data: formdata,
-        type: 'POST',
-        success: function(result){
-            result = JSON.parse(result);
-            console.log(result)
-            if (result.status == 'OK') {
-                project_open_parse_json_file(result.data)
-            } else if (result.status == 'ZERO_RESULTS') {
-                alert(result.message)
-            }
-        }
-    });
-}
-
 
 function btn_search(){
     var find_files = $('#find_files').val();

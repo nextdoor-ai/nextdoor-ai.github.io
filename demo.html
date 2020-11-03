@@ -1,45 +1,135 @@
 ---
 layout: default_style
-permalink: /contact
+permalink: /demo
 published: true
 ---
 <!-- Main Container -->
+<style>
+  /* Style the tab */
+.tab {
+  overflow: hidden;
+  border: 1px solid #ccc;
+  background-color: #f1f1f1;
+}
+
+/* Style the buttons that are used to open the tab content */
+.tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+  background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+  background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontent {
+  display: none;
+  padding: 6px 12px;
+  border: 1px solid #ccc;
+  border-top: none;
+}
+.tabcontent {
+  animation: fadeEffect 1s; /* Fading effect takes 1 second */
+}
+
+/* Go from zero to full opacity */
+@keyframes fadeEffect {
+  from {opacity: 0;}
+  to {opacity: 1;}
+}
+</style>
+<script src="/assets/js/common/jquery.1.12.0.min.js"></script>
+<script type="text/javascript">
+  function openCity(evt, cityName) {
+  // Declare all variables
+  var i, tabcontent, tablinks;
+
+  // Get all elements with class="tabcontent" and hide them
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+
+  // Get all elements with class="tablinks" and remove the class "active"
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+
+  // Show the current tab, and add an "active" class to the button that opened the tab
+  document.getElementById(cityName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+$(document).ready(function(){
+  openCity(event, 'London')
+  $("#first_tab").attr("class", "tablinks active")
+})
+</script>
 
 <div class="container-fluid-kamn">
   <div class="row">
-    <div>
-      <!-- <iframe width="100%" height="450px" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="{{ site.google_map }}"></iframe> -->
-      <!-- <table cellpadding="0" cellspacing="0" width="462" style="margin: auto;"> <tr> <td style="border:1px solid #cecece;"><a href="https://v4.map.naver.com/?searchCoord=873ccf74acffbcbf61bda333d385fe9288552dc37a272a08a0f03368b4cb3da8&query=66eI7Y%2Bs6rWsIOyDiOywveuhnCAxMQ%3D%3D&tab=1&lng=ebf48bf825d4ce37cf1da35e2057d8aa&mapMode=0&mpx=009e43f646af43f2fd6342ab376715624b87475c498e6b188790ba123d2e7fff1b924d191b5939dcfd7e1ba26824cb954d7cc951e412a1eca3723e60588033c5&lat=bcae48c3617859c7b464baf4b40147c7&dlevel=12&enc=b64&menu=location" target="_blank"><img src="http://prt.map.naver.com/mashupmap/print?key=p1592462905297_256069178" width="460" height="340" alt="지도 크게 보기" title="지도 크게 보기" border="0" style="vertical-align:top;"/></a></td> </tr> <tr> <td> <table cellpadding="0" cellspacing="0" width="100%"> <tr> <td height="30" bgcolor="#f9f9f9" align="left" style="padding-left:9px; border-left:1px solid #cecece; border-bottom:1px solid #cecece;"> <span style="font-family: tahoma; font-size: 11px; color:#666;">2020.6.18</span>&nbsp;<span style="font-size: 11px; color:#e5e5e5;">|</span>&nbsp;<a style="font-family: dotum,sans-serif; font-size: 11px; color:#666; text-decoration: none; letter-spacing: -1px;" href="https://v4.map.naver.com/?searchCoord=873ccf74acffbcbf61bda333d385fe9288552dc37a272a08a0f03368b4cb3da8&query=66eI7Y%2Bs6rWsIOyDiOywveuhnCAxMQ%3D%3D&tab=1&lng=ebf48bf825d4ce37cf1da35e2057d8aa&mapMode=0&mpx=009e43f646af43f2fd6342ab376715624b87475c498e6b188790ba123d2e7fff1b924d191b5939dcfd7e1ba26824cb954d7cc951e412a1eca3723e60588033c5&lat=bcae48c3617859c7b464baf4b40147c7&dlevel=12&enc=b64&menu=location" target="_blank">지도 크게 보기</a> </td> <td width="98" bgcolor="#f9f9f9" align="right" style="text-align:right; padding-right:9px; border-right:1px solid #cecece; border-bottom:1px solid #cecece;"> <span style="float:right;"><span style="font-size:9px; font-family:Verdana, sans-serif; color:#444;">&copy;&nbsp;</span>&nbsp;<a style="font-family:tahoma; font-size:9px; font-weight:bold; color:#2db400; text-decoration:none;" href="https://www.navercorp.com" target="_blank">NAVER Corp.</a></span> </td> </tr> </table> </td> </tr> </table> -->
-      <table cellpadding="0" cellspacing="0" width="462" style="margin: auto;"> <tr> <td style="border:1px solid #cecece;"><a href="{{ site.naver_map }}" target="_blank"><img src="../assets/img/nextdoor_map.png" width="460" height="365" alt="지도 크게 보기" title="지도 크게 보기" border="0" style="vertical-align:top;"/></a></td> </tr> <tr> <td> <table cellpadding="0" cellspacing="0" width="100%"> <tr> <td height="30" bgcolor="#f9f9f9" align="left" style="padding-left:9px; border-left:1px solid #cecece; border-bottom:1px solid #cecece;"> <span style="font-family: tahoma; font-size: 11px; color:#666;">2020.6.18</span>&nbsp;<span style="font-size: 11px; color:#e5e5e5;">|</span>&nbsp;<a style="font-family: dotum,sans-serif; font-size: 11px; color:#666; text-decoration: none; letter-spacing: -1px;" href="https://v4.map.naver.com/?searchCoord=873ccf74acffbcbf61bda333d385fe9288552dc37a272a08a0f03368b4cb3da8&query=66eI7Y%2Bs6rWsIOyDiOywveuhnCAxMQ%3D%3D&tab=1&lng=ebf48bf825d4ce37cf1da35e2057d8aa&mapMode=0&mpx=009e43f646af43f2fd6342ab376715624b87475c498e6b188790ba123d2e7fff1b924d191b5939dcfd7e1ba26824cb954d7cc951e412a1eca3723e60588033c5&lat=bcae48c3617859c7b464baf4b40147c7&dlevel=12&enc=b64&menu=location" target="_blank">지도 크게 보기</a> </td> <td width="98" bgcolor="#f9f9f9" align="right" style="text-align:right; padding-right:9px; border-right:1px solid #cecece; border-bottom:1px solid #cecece;"> <span style="float:right;"><span style="font-size:9px; font-family:Verdana, sans-serif; color:#444;">&copy;&nbsp;</span>&nbsp;<a style="font-family:tahoma; font-size:9px; font-weight:bold; color:#2db400; text-decoration:none;" href="https://www.navercorp.com" target="_blank">NAVER Corp.</a></span> </td> </tr> </table> </td> </tr> </table>
-      <br />
-    </div>
     <div class="container">
       <div class="col-lg-12">
+        <div class="tab">
+          <button id="first_tab" class="tablinks" onclick="openCity(event, 'London')">음성 변환</button>
+          <button class="tablinks" onclick="openCity(event, 'Paris')">동영상 전처리</button>
+          <button class="tablinks" onclick="openCity(event, 'Tokyo')">추론 결과 확인</button>
+          <button class="tablinks" onclick="openCity(event, 'Seoul')">이미지 전처리 데모</button>
+        </div>
 
-        <h4>{{ site.company_name }}</h4>
-        <p><span class="glyphicon glyphicon-map-marker"></span> 주소: {{ site.address_line }}</p>
-<!--        <p><span class="glyphicon glyphicon-phone-alt"></span> 대표전화: {{ site.telephone_number }}</p>-->
-        <!-- <p>Fax: {{ site.fax_number }}</p> -->
+        <!-- Tab content -->
+        <div id="London" class="tabcontent">
+          <h3>음성 변환</h3>
+          <p>별도의 학습 데이터 없이 특정인의 음성 데이터가 있다면 그 음성을 흉내낼 수 있습니다.</p>
+          <hr>
+          <h4 id="source-2"><em>Source</em></h4>
+          <audio src="https://raw.githubusercontent.com/nextdoor-ai/nextdoor-ai.github.io/master/assets/wav/pd34_hc00/pd34_004.wav" controls="" preload=""></audio>
+          <h4 id="target-2"><em>Target</em></h4>
+          <audio src="https://raw.githubusercontent.com/nextdoor-ai/nextdoor-ai.github.io/master/assets/wav/pd34_hc00/hc00_016.wav" controls="" preload=""></audio>
+          <h4 id="converted-2"><em>Converted</em></h4>
+          <audio src="https://raw.githubusercontent.com/nextdoor-ai/nextdoor-ai.github.io/master/assets/wav/pd34_hc00/pd34xhc00.wav" controls="" preload=""></audio>
+          <hr>
+          <h4 id="source"><em>Source</em></h4>
+          <audio src="https://raw.githubusercontent.com/nextdoor-ai/nextdoor-ai.github.io/master/assets/wav/pd24_hc15/pd24_002.wav" controls="" preload=""></audio>
+          <h4 id="target"><em>Target</em></h4>
+          <audio src="https://raw.githubusercontent.com/nextdoor-ai/nextdoor-ai.github.io/master/assets/wav/pd24_hc15/hc15_001.wav" controls="" preload=""></audio>
+          <h4 id="converted"><em>Converted</em></h4>
+          <audio src="https://raw.githubusercontent.com/nextdoor-ai/nextdoor-ai.github.io/master/assets/wav/pd24_hc15/pd24xhc15.wav" controls="" preload=""></audio>
+          <hr>
+        </div>
 
-        <p><span class="glyphicon glyphicon-send"></span> 이메일: {{ site.company_email }}</p> <br>
-        <h4>찾아오시는 방법</h4>
-        <p>자가용 이용시: 서울창업허브 주차장에 주차한 뒤 도보 이용하시면 됩니다.<br>
-          대중교통 이용시: 공덕역 2번 출구로 나온 뒤 도보 이용하시면 됩니다.</p>
-        <br>
-        <!-- p class="lead">Social Link</p><hr>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-          <a href="#"><img src="assets/img/social-icons/btn_skype.png" alt="Skype"></a>
-          Call us
+        <div id="Paris" class="tabcontent">
+          <h3>동영상 전처리</h3>
+          <p>행동 분류를 위해 영상에서 특정 행동이 나타나는 부분을 수집할 수 있는 도구입니다.</p>
+          <div>
+            <img src="https://github.com/nextdoor-ai/nextdoor-ai.github.io/blob/master/assets/img/video_prep.gif?raw=true">
+          </div>
         </div>
-        <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
-          <a href="#"><img src="assets/img/social-icons/btn_facebook.png" alt="Facebook"></a>
-          Like us
+
+        <div id="Tokyo" class="tabcontent">
+          <h3>추론 결과 확인</h3>
+          <p>영상에서 추론된 인물의 행동 및 기타 메타정보를 확인할 수 있습니다.</p>
+          <div>
+            <img src="https://github.com/nextdoor-ai/nextdoor-ai.github.io/blob/master/assets/img/show_result.gif?raw=true">
+          </div>
         </div>
-        <div class="col-lg-4 col-md-4 col-sm-3 col-xs-12">
-          <a href="#"><img src="assets/img/social-icons/btn_twitter.png" alt="Twitter"></a>
-          Follow us
+        <div id="Seoul" class="tabcontent">
+          <h3>이미지 전처리 데모</h3>
+          <p>MindTrip 프레임워크에서 사용중인 이미지 전처리 기능 데모를 확인할 수 있습니다.</p>
+          <a href="/prep_demo" target="_blank">데모 열기</a>
         </div>
-        <br !-->
       </div>
     </div>
   </div>

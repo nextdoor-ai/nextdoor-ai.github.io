@@ -1,8 +1,8 @@
-<!-- -&#45;&#45;-->
-<!--layout: default_style-->
-<!--permalink: /prep_demo-->
-<!--published: true-->
-<!-- -&#45;&#45;-->
+---
+layout: default_style
+permalink: /prep_demo
+published: true
+---
     <!-- CSS style definition -->
     <style type="text/css">
       body { min-width:200px; padding:0; margin:0; font-family:sans-serif; }
@@ -376,7 +376,6 @@
         </div>
 
         <button id="load_btn" class="btn btn-sm btn-outline-secondary" ><i id="loading_btn" class="fa fa-spinner fa-spin" style="display:none;"></i>학습 이미지 불러오기</button>
-        <button id="del_all" class="btn btn-sm btn-outline-secondary" style="display:none;"><i id="loading_btn3" class="fa fa-spinner fa-spin" style="display:none;"></i>전체 이미지 삭제</button>
         <button id="toggle_left" class="btn btn-sm btn-outline-secondary">Left Bar 열기/닫기</button>
         <div id="chk_inf" style="display:none;">
           <label for="inf_include">CCTV 추론데이터</label>&nbsp;&nbsp;<input type="checkbox" id="inf_include"/>
@@ -393,15 +392,6 @@
               <li onclick="show_home_panel()" style="cursor:pointer;">Data
                 <ul>
                   <li onclick="read_images('ING')" title="작업목록불러오기">작업목록불러오기</li>
-                  {% if is_admin %}
-
-                  <li onclick="pack_via_metadata('db_u_adm')" title="작업목록저장하기" id="chk_sav_btn" style="display:none;">작업목록저장하기</li>
-                  {% endif %}
-                    <li onclick="pack_via_metadata('db_i')" title="작업목록저장하기" id="sav_btn">작업목록저장하기</li>
-                    <li onclick="read_images('COMPLETE')" title="작업완료목록불러오기">작업완료목록불러오기</li>
-                  {% if is_admin %}
-                    <li onclick="read_images('CHECKED')" title="확인완료목록 불러오기">확인완료목록 불러오기</li>
-                  {% endif %}
                 </ul>
               </li>
             <li id="menu_li" onclick="" style="cursor:pointer;">Menu
@@ -497,9 +487,8 @@
               &nbsp;<select id="default_val" style="display:none">
 
               </select>
-            <button id="del_btn" class="btn btn-sm btn-outline-secondary" style="display:none"><i id="loading_btn2" class="fa fa-spinner fa-spin" style="display:none;"></i>이미지 삭제</button>
             <button id="info_btn" type="button" class="btn btn-outline-info" style="display:none;">Info</button>
-            <span id="cnt_desc">남은 작업건수 :</span>&nbsp;<span id="left_cnt">6</span>
+            <span id="cnt_desc">남은 작업건수 :</span>&nbsp;<span id="left_cnt">4</span>
 
             <!-- Modal -->
             <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -561,9 +550,6 @@
                 </div>
               </div>
               <div id="right_area" style="width:30%;float:right;">
-                <div style="float:right;">
-                  <button id="stats_btn_no" class="btn btn-sm btn-outline-secondary" style="display:none;"><i id="loading_btn4" class="fa fa-spinner fa-spin" style="display:none;"></i>완료</button>
-                </div>
                 <br><br>
                 <div style="height:45%; ">
                     <h5 style="text-align: center;">라벨 분류</h5>

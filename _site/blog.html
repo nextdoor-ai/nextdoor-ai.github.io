@@ -4,11 +4,18 @@
   <head>
   <!-- meta data & title -->
   <meta charset="utf-8">
-  <title>Nextdoor</title>
+  <title>넥스트도어</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Yet another Jekyll theme. It is designed for business purpose and ported by  Melvin Ch'ng.
+  <meta name="description" content="의료 인공지능 전문기업 넥스트도어입니다.
 ">
   <meta name="author" content="">
+  <meta name="naver-site-verification" content="27f83b83c95a291d4126911e148b9fd31ae43726" />
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="의료 인공지능 전문기업 넥스트도어">
+  <meta property="og:description" content="의료 인공지능 전문기업 넥스트도어입니다.">
+  <meta property="og:image" content="https://thenextdoor.co.kr/assets/img/company.png">
+  <meta property="og:url" content="https://thenextdoor.co.kr/">
 
   <!-- Favicon and touch icons -->
   <link rel="shortcut icon" href="../assets/ico/favicon.ico">
@@ -28,6 +35,24 @@
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
   <!-- Header -->
+<script>
+  $(document).ready(function(){
+    $(obj).parent().addClass("active");
+    let loc = location.href;
+    if(loc.indexOf("about") > -1){
+      $("#li_1").addClass("active")
+    } else if(loc.indexOf("tech") > -1){
+      $("#li_2").addClass("active")
+    } else if(loc.indexOf("service") > -1){
+      $("#li_3").addClass("active")
+    } else if(loc.indexOf("team") > -1){
+      $("#li_4").addClass("active")
+    } else if(loc.indexOf("contact") > -1){
+      $("#li_5").addClass("active")
+    }
+
+  });
+</script>
 <nav id="navbar-section" class="navbar navbar-default navbar-static-top navbar-sticky" role="navigation">
   <div class="container">
   
@@ -39,28 +64,31 @@
       <span class="icon-bar"></span>
     </button>
 
-    <a class="navbar-brand wow fadeInDownBig" href="/"><img class="office-logo" src="../assets/img/slider/Office.jpg" alt="Office"></a>      
+    <a class="navbar-brand wow fadeInDownBig" href="/"><img class="office-logo" src="/assets/img/company.png" alt="Office"></a>
   </div>
 
   <div id="navbar-spy" class="collapse navbar-collapse navbar-responsive-collapse">
-    <ul class="nav navbar-nav pull-right">
+    <ul id="menu_top" class="nav navbar-nav pull-right">
       <!-- <li class="active">
         <a href="/">Home</a>
       </li> -->
-      <li>
+      <li id="li_1">
         <a href="/about">About</a>
       </li>
-      <!-- <li>
-        <a href="/blog.html">Blog</a>
-      </li> -->
-      <li>
-        <a href="/video/1">News & Media</a>
+      <li id="li_2">
+        <a href="/tech">Technology</a>
       </li>
-      <li>
+      <li id="li_3">
+        <a href="/service">Service</a>
+      </li>
+      <li id="li_4">
         <a href="/team">Team</a>
       </li>
-      <li>
+      <li id="li_5">
         <a href="/contact"><span>Contact</span></a>
+      </li>
+      <li id="li_6">
+        <a href="/demo"><span>Demo</span></a>
       </li>
     </ul>         
   </div>
@@ -143,18 +171,12 @@
       <div class="col-md-6">
         <h3><i class="fa fa-map-marker"></i> Contact:</h3>
         <p class="footer-contact">
-          넥스트도어 <br>
-<!--          대표전화: 02-000-1111 <br>-->
+          (주)넥스트도어 <br>
+          대표전화: 02-575-2260 <br>
           <!-- Fax:  <br> -->
           이메일: contact@thenextdoor.co.kr<br>
+          주소: 서울 서초구 양재동 335-11, 지하 1층
         </p>
-      </div>
-      <div class="col-md-6">
-        <h3><i class="fa fa-external-link"></i> Links</h3>
-        <p><a href="/about"> About</a></p>
-        <p><a href="/video/1/"> News & Media</a></p>
-        <p><a href="/team"> Team</a></p>
-        <p><a href="/contact"> Contact</a></p> 
       </div>
     </div>
   </div>

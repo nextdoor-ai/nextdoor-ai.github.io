@@ -1,14 +1,21 @@
 <!doctype html>
 <html lang="en">
-
+   <meta name="naver-site-verification" content="bf5c238eddd5b3a4802cda17308c4804c444a76d" />
   <head>
   <!-- meta data & title -->
   <meta charset="utf-8">
-  <title>Nextdoor</title>
+  <title>넥스트도어</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Yet another Jekyll theme. It is designed for business purpose and ported by  Melvin Ch'ng.
+  <meta name="description" content="의료 인공지능 전문기업 넥스트도어입니다.
 ">
   <meta name="author" content="">
+  <meta name="naver-site-verification" content="27f83b83c95a291d4126911e148b9fd31ae43726" />
+
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="의료 인공지능 전문기업 넥스트도어">
+  <meta property="og:description" content="의료 인공지능 전문기업 넥스트도어입니다.">
+  <meta property="og:image" content="https://thenextdoor.co.kr/assets/img/company.png">
+  <meta property="og:url" content="https://thenextdoor.co.kr/">
 
   <!-- Favicon and touch icons -->
   <link rel="shortcut icon" href="../assets/ico/favicon.ico">
@@ -28,6 +35,24 @@
   <link rel="stylesheet" href="../assets/css/style.css">
 </head>
   <!-- Header -->
+<script>
+  $(document).ready(function(){
+    $(obj).parent().addClass("active");
+    let loc = location.href;
+    if(loc.indexOf("about") > -1){
+      $("#li_1").addClass("active")
+    } else if(loc.indexOf("tech") > -1){
+      $("#li_2").addClass("active")
+    } else if(loc.indexOf("service") > -1){
+      $("#li_3").addClass("active")
+    } else if(loc.indexOf("team") > -1){
+      $("#li_4").addClass("active")
+    } else if(loc.indexOf("contact") > -1){
+      $("#li_5").addClass("active")
+    }
+
+  });
+</script>
 <nav id="navbar-section" class="navbar navbar-default navbar-static-top navbar-sticky" role="navigation">
   <div class="container">
   
@@ -39,11 +64,32 @@
       <span class="icon-bar"></span>
     </button>
 
-    <a class="navbar-brand wow fadeInDownBig" href="/"><img class="office-logo" src="../assets/img/slider/Office.jpg" alt="Office"></a>      
+    <a class="navbar-brand wow fadeInDownBig" href="/"><img class="office-logo" src="/assets/img/company.png" alt="Office"></a>
   </div>
 
   <div id="navbar-spy" class="collapse navbar-collapse navbar-responsive-collapse">
-    <ul class="nav navbar-nav pull-right">
+    <ul id="menu_top" class="nav navbar-nav pull-right">
+      <!-- <li class="active">
+        <a href="/">Home</a>
+      </li> -->
+      <li id="li_1">
+        <a href="/about">About</a>
+      </li>
+      <li id="li_2">
+        <a href="/tech">Technology</a>
+      </li>
+      <li id="li_3">
+        <a href="/service">Service</a>
+      </li>
+      <li id="li_4">
+        <a href="/team">Team</a>
+      </li>
+      <li id="li_5">
+        <a href="/contact"><span>Contact</span></a>
+      </li>
+      <li id="li_6">
+        <a href="/demo"><span>Demo</span></a>
+      </li>
     </ul>         
   </div>
   </div>
@@ -56,20 +102,226 @@
 <script>
   new WOW().init();
 </script>
-
+<link rel="stylesheet/less" href="../assets/css/glyphicons.less">
+  <style>
+      img.caimg {
+          display: block;
+          margin: 0px auto;
+          height:100%;
+      }
+  </style>
+<script>
+$(document).ready(function(){
+    $('.carousel').carousel()
+})
+</script>
   <body>
+    <!-- Begin #carousel-section -->
+    <section id="carousel-section" class="section-global-wrapper">
+        <div class="container-fluid-kamn">
+            <div class="row">
+                <div id="carousel-1" class="carousel slide" data-ride="carousel">
+
+                    <!-- Indicators -->
+                    <ol class="carousel-indicators visible-lg">
+                        <li data-target="#carousel-1" data-slide-to="0" class="active"></li>
+                        <li data-target="#carousel-1" data-slide-to="1"></li>
+                        <li data-target="#carousel-1" data-slide-to="2"></li>
+                        <li data-target="#carousel-1" data-slide-to="3"></li>
+                        <li data-target="#carousel-1" data-slide-to="4"></li>
+                    </ol>
+
+                    <!-- Wrapper for slides -->
+                    <div class="carousel-inner" role="listbox">
+                        <!-- Begin Slide 1 -->
+                        <div class="img_container item active">
+                            <img src="/assets/img/main1.jpg" alt="Image of first carousel" class="caimg">
+                            <div class="carousel-caption" style="text-align:left;top:2px;">
+                                <h3 class="carousel-title hidden-xs">NextDoor:</h3>
+                                <h4 class="carousel-title hidden-xs">Door to the Next Generation</h4>
+                                <p class="carousel-body-down">인공지능을 통해 펼쳐질 Next 세대와 현재를 잇는 Door입니다.</p>
+                            </div>
+                            <div class="carousel-caption" style="text-align:right;">
+                                <h3 class="carousel-title hidden-xs" style="margin-bottom:0px;">NextDoor:</h3>
+                                <h4 class="carousel-title hidden-xs" style="margin-top:0px;">a Neighbor</h4>
+                                <p class="carousel-body-down">어렵게만 여겨지는 인공지능을 넥스트도어와 함께 친근하게 만나세요.</p>
+                            </div>
+                        </div>
+                        <!-- End Slide 1 -->
+
+                        <!-- Begin Slide 2 -->
+                        <div class="img_container item">
+                            <img src="/assets/img/main2.jpg" alt="Image of second carousel" class="caimg">
+                            <div class="carousel-caption" style="text-align:right;">
+                                <h3 class="carousel-title hidden-xs" style="margin-bottom:0px;">MindTrip:</h3>
+                                <h4 class="carousel-title hidden-xs" style="margin-top:0px;">Deep Learning image Processing Tech</h4>
+                                <p class="carousel-body-down">MindTrip은 넥스트도어에서 자체개발한 인공지능 엔진입니다.</p>
+                            </div>
+                        </div>
+                        <!-- End Slide 2 -->
+
+                        <!-- Begin Slide 3 -->
+                        <div class="img_container item">
+                            <img src="/assets/img/main3.jpg" alt="Image of third carousel"  class="caimg">
+                            <div class="carousel-caption" style="text-align:right;">
+                                <h3 class="carousel-title hidden-xs" style="margin-bottom:0px;">Medicine:</h3>
+                                <h4 class="carousel-title hidden-xs" style="margin-top:0px;">Drug-Disease Analysis, X-Ray Analysis,<br>Medicine Image Analysis</h4>
+                                <p class="carousel-body-down">넥스트도어는 의료부분에 인공지능 도입<br>연구/개발을 지원합니다.</p>
+                            </div>
+                        </div>
+                        <!-- End Slide 3 -->
+                        <!-- Begin Slide 3 -->
+                        <div class="img_container item">
+                            <img src="/assets/img/main4.jpg" alt="Image of third carousel" class="caimg">
+                            <div class="carousel-caption" style="text-align:right;">
+                                <h3 class="carousel-title hidden-xs" style="margin-bottom:0px;">Growth and Development:</h3>
+                                <h4 class="carousel-title hidden-xs" style="margin-top:0px;">Measurement for AI, Consultion for AI</h4>
+                                <p class="carousel-body-down">넥스트도어는 인공지능을 활용하여<br>영유아의 성장발달을 효과적으로 측정하고자 합니다.</p>
+                            </div>
+                        </div>
+                        <!-- End Slide 3 -->
+                        <!-- Begin Slide 3 -->
+                        <div class="img_container item">
+                            <img src="/assets/img/main5.jpg" alt="Image of third carousel" class="caimg">
+                            <div class="carousel-caption" style="text-align:right;">
+                                <h3 class="carousel-title hidden-xs" style="margin-bottom:0px;">Control:</h3>
+                                <h4 class="carousel-title hidden-xs" style="margin-top:0px;">Smart Crosswalk, CCTV Analysis</h4>
+                                <p class="carousel-body-down">넥스트도어는 CCTV 관제영역에 인공지능 도입<br>연구/개발을 지원합니다.</p>
+                            </div>
+                        </div>
+                        <!-- End Slide 3 -->
+                    </div>
+
+                    <!-- Controls -->
+                    <a class="left carousel-control" href="#carousel-1" data-slide="prev">
+                        <span class="glyphicon glyphicon-chevron-left"></span>
+                    </a>
+                    <a class="right carousel-control" href="#carousel-1" data-slide="next">
+                        <span class="glyphicon glyphicon-chevron-right"></span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End #carousel-section -->
+
+
     <!-- Begin #services-section -->
-    <section id="services" class="services-section section-global-wrapper">
+    <section id="tech" class="services-section section-global-wrapper">
         <div class="container">
             <div class="row">
                 <div class="services-header">
-                    <h3 class="services-header-title">넥스트도어 회사 사이트입니다.</h3>
-                    <p class="services-header-body"><em> 사이트 준비중입니다. </em>  </p><hr>
+                    <h3 class="services-header-title">Technology</h3>
                 </div>
             </div>
+      
+            <!-- Begin Services Row 1 -->
+            <div class="row services-row services-row-head services-row-1">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="services-group wow animated fadeInLeft" data-wow-offset="40" style="height:217px;">
+                        <p class="services-icon"><img src="/assets/img/icon1.png" alt="mindtrip" style="height:95px;"></p>
+                        <h4 class="services-title">MindTrip</h4>
+                        <p class="services-body">Artificial Intelligence Engine</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="services-group wow animated zoomIn" data-wow-offset="40" style="height:217px;">
+                        <p class="services-icon"><img src="/assets/img/icon2.png" alt="mindtrip" style="height:95px;"></p>
+                        <h4 class="services-title">Image Analysis</h4>
+                        <p class="services-body">Detect, Recognition, Prediction</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="services-group wow animated fadeInRight" data-wow-offset="40" style="height:217px;">
+                        <p class="services-icon"><img src="/assets/img/icon3.png" alt="mindtrip" style="height:95px;"></p>
+                        <h4 class="services-title">Text Analysis</h4>
+                        <p class="services-body">Mining, Relation, Inference</p>
+                    </div>
+                </div>
+            </div>
+            <!-- End Serivces Row 1 -->
+    
         </div>      
     </section>
     <!-- End #services-section -->
+
+  <section id="services" class="services-section section-global-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="services-header">
+                    <h3 class="services-header-title">Service</h3>
+                </div>
+            </div>
+
+            <!-- Begin Services Row 1 -->
+            <div class="row services-row services-row-head services-row-1">
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="services-group wow animated fadeInLeft" data-wow-offset="40" style="height:455px;">
+                        <p class="services-icon"><iframe width="100%" height="320" src="https://www.youtube.com/embed/xOdxYNpGHU0" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+                        <h4 class="services-title">교통관제</h4>
+                        <p class="services-body">성남산업진흥원 - 인공지능기반<br>불법주정차 통합 플랫폼 구축 사업</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="services-group wow animated zoomIn" data-wow-offset="40" style="height:455px;">
+                        <p class="services-icon"><iframe width="100%" height="320" src="https://www.youtube.com/embed/d3s4Dp3wSTI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+                        <h4 class="services-title">신체발달 추론</h4>
+                        <p class="services-body">영유아 신체발달 상태 추론</p>
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="services-group wow animated fadeInRight" data-wow-offset="40" style="height:455px;">
+                        <p class="services-icon"><iframe width="100%" height="320" src="https://www.youtube.com/embed/3VsK1ZfGVO8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+                        <h4 class="services-title">정서발달 추론</h4>
+                        <p class="services-body">영유아 정서발달 상태 추론</p>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
+                    <div class="services-group wow animated fadeInRight" data-wow-offset="40" style="height:455px;">
+                        <p class="services-icon"><img src="/assets/img/xray_img.jpg" alt="mindtrip" style="height:320px;max-width:95%;"></p>
+                        <h4 class="services-title">의료 이미지 분석</h4>
+                        <p class="services-body">흉부 X-Ray 내에서 폐결핵 병변부위 추론</p>
+                    </div>
+                </div>
+            </div>
+            <!-- End Serivces Row 1 -->
+
+        </div>
+    </section>
+  <section id="about" class="services-section section-global-wrapper">
+        <div class="container">
+            <div class="row">
+                <div class="services-header">
+                    <h3 class="services-header-title">About us</h3>
+                </div>
+            </div>
+
+            <!-- Begin Services Row 1 -->
+            <div class="row services-row services-row-head services-row-1">
+                    <p>
+                        넥스트도어는 기존의 산업들이 “더 효율적으로, 더 스마트하게“ 운용될 수 있음에도 불구하고, 기술개발의 어려움, 기술 도입에 대한 두려움으로 인하여<br>“덜 효율적으로”, “덜 스마트하게“ 운용되는 것을 경험한 인원들이 모여 시작하였습니다.
+                    </p>
+                    <p>
+                        경험, 노하우는 비즈니스에 있어서 중요한 자산입니다. 비즈니스는 종종 이런 경험과 노하우들로 운용되며, 중요한 부분을 차지합니다.<br>하지만, “더 효율적으로, 더 스마트하게“ 비즈니스를 개선하고 싶을 때, 경험과 노하우는 시스템화하는데 있어서 종종 걸림돌이 되고 맙니다.<br>경험과 노하우는 인적자원이 필요하며, 주관적이고, 수동적인 경우가 많습니다.
+                    </p>
+                    <p>
+                        이 때 인공지능은 큰 힘을 발휘합니다. 인공지능은 학습하고, 분석하며, 추론함으로써 경험과 노하우를 시스템화합니다.<br>학습의 결과로 의료영상 판독 기사가 되기도 하며, CCTV 감시자, DNA 분석가, 보육교사가 될 수 있습니다.
+                    </p>
+                    <p>
+                        넥스트도어는 고객의 경험과 노하우를 이해하고, 분석하여, 인공지능을 통한 시스템이나 서비스를 만듭니다.
+                    </p>
+                    <p>
+                        넥스트도어는 인공지능을 통해 고객들이 새로운 경험으로(새로운 세상으로) 나아갈 수 있도록 돕는 문이며, 고객들의 옆집에 이웃과 같이 친근한 파트너이고 싶습니다.
+                    </p>
+            </div>
+            <!-- End Serivces Row 1 -->
+
+        </div>
+    </section>
 
   </body>
 
@@ -80,11 +332,11 @@
       <div class="col-md-6">
         <h3><i class="fa fa-map-marker"></i> Contact:</h3>
         <p class="footer-contact">
-          넥스트도어 <br>
-<!--          대표전화: 02-000-1111 <br>-->
+          (주)넥스트도어 <br>
+          대표전화: 02-575-2260 <br>
           <!-- Fax:  <br> -->
           이메일: contact@thenextdoor.co.kr<br>
-          주소: 서울 마포구 백범로31길 21, 서울창업허브 본관 411호
+          주소: 서울 서초구 양재동 335-11, 지하 1층
         </p>
       </div>
     </div>

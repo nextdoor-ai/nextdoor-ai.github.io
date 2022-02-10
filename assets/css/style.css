@@ -16,6 +16,27 @@ License URI:http://www.gnu.org/licenses/gpl-2.0.html
 * ==========================================================================
 */
 
+/* 이렇게 링크해서 사용하면 됩니다 */
+@import url('https://fonts.googleapis.com/css?family=Nanum+Gothic:400,700,800');
+
+/* 폰트 이름은 'Nanum Gothic' 입니다. 공백이 있으므로 주의해 주세요. */
+/* font-family : 'Nanum Gothic'; 으로 지정해 줍니다. */
+body {
+	font-family : 'Nanum Gothic';
+}
+
+.title-txt{
+    font-weight:800;
+}
+
+.title-txt2{
+    font-weight:600;
+}
+
+.title-txt3{
+    font-weight:400;
+}
+
 .btn-primary{
   margin-left: 20px;
 }
